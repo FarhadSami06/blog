@@ -1,0 +1,66 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<style>
+			form {
+				height: 400px;
+				width: 200px;
+				margin: 5% auto;
+				border: 1px solid;
+			}
+			form label, input, button {
+				margin: 10px 0 0 10px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<form id="reg_form">
+			<label for="userName">Username:</label>
+			<input type="text" name="userName" id="userName"/>
+			<label for="password">Password:</label>
+			<input type="text" name="password" id="password" />
+			<label for="email">Email:</label>
+			<input type="text" name="email" id="email" />
+			<button class="btn btn-success" type="submit">Submit</button>
+		</form>
+		<script>
+			$(function() {
+				// Handle the submit event by validating our fields first
+				$('#reg_form').submit(function() {
+					var nameValidate = /^[A-Za-z0-9]{6,20}$/;
+					var mailValidate = /^[A-Za-z0-9_\.]+@[A-Za-z0-9]+\.[a-z]{2,4}$/;
+					var passValidate = /^[A-Za-z0-9]{6,12}$/;
+					var caps = /[A-Z]+/;
+					var nums = /[0-9]+/;
+					var username = $('#userName').val();
+					var email = $('#email').val();
+					var password = $('#password').val();
+					
+					
+					if (!nameValidate.test(username)){
+						alert('Username is invalid. Username must contain a minimum of 6 characters');
+						return false;
+					}
+					if(!mailValidate.test(email)){
+						alert('Email provided is not a valid email');
+						return false;
+					}
+					if(!caps.test(password)) {
+						alert('Password must contain one capitalized letter.');
+						return false;
+					}
+					if(!nums.test(password)) {
+						alert('Password must contain one number');
+					}
+					if(!passValidate.test(password)){
+						alert('Password must contain a minimum of 6 characters and a maximum of 12 characters');
+						return false;
+					}
+				});	
+			});
+			
+		</script>
+	</body>
+</html>
