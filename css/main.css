@@ -1,0 +1,49 @@
+
+#reg_form {
+	height: 465px;
+	width: 300px;
+	margin: 0 auto;
+	text-align: center;
+	background-color: #f4f4f4;
+	padding-top: 25px;
+}
+#reg_form label {
+	margin: 0 auto;
+	
+}
+#reg_form input {
+	box-shadow: 1px 1px 5px;
+	margin: 10px;
+}
+
+#reg_form button {
+	margin-top: 30px;
+	box-shadow: 1px 1px 5px;
+	
+}
+#reg_form p {
+	font-size: 10px;
+	margin: 0 35px;
+	color: #8e8e8e;
+	font-weight: 800;
+}
+.alert, alert-success {
+	text-align: center;
+	background-color: #0085a1;
+	border: none;
+	color: #ffffff;
+	font-weight: 800;
+	margin: 20px auto;
+	
+	
+	
+}
+.sign_inStyle {
+	font-size: 35px;
+	font-weight:bold;
+	text-transform: uppercase;
+	
+	
+}
+
+
