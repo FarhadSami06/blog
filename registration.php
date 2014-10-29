@@ -1,96 +1,6 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Blog | Registration</title>
-		
-		<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link href="css/clean-blog.min.css" rel="stylesheet">
-		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    	<link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-		<script src="js/bootstrap.min.js"></script>
-	    <script src="js/clean-blog.js"></script>
-	    
-		<style>
-			form {
-				height: 465px;
-				width: 300px;
-				margin: 0 auto;
-				text-align: center;
-				background-color: #f4f4f4;
-				padding-top: 25px;
-			}
-			form label {
-				margin: 0 auto;
-				
-			}
-			form input {
-				box-shadow: 1px 1px 5px;
-				margin: 10px;
-			}
-			
-			form button {
-				margin-top: 30px;
-				box-shadow: 1px 1px 5px;
-				
-			}
-			form p {
-				font-size: 10px;
-				margin: 0 35px;
-				color: #8e8e8e;
-				font-weight: 800;
-			}
-			.alert, alert-success {
-				text-align: center;
-				background-color: #0085a1;
-				border: none;
-				color: #ffffff;
-				font-weight: 800;
-				margin: 20px auto;
-				
-				
-				
-			}
-
-		</style>
-	</head>
-	<body>
-		<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-        <div class="container-fluid">
-      
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                
-            </div>
-
-           
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="index.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="about.html">About</a>
-                    </li>
-                    <li>
-                        <a href="log_in.php">Sign in</a>
-                    </li>
-                    <li>
-                        <a href="contact.html">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            
-        </div>
-       
-    </nav>
-		
+<?php
+$page_title = 'Blog | Registration';
+require_once 'header_temp.php'; ?>
 	<header class="intro-header" style="background-image: url('img/home-bg.jpg')">
         <div class="container">
             <div class="row">
@@ -106,21 +16,7 @@
     </header>
 
 <div class="container">
-		<div class="alert alert-success" role="alert">
-
-		<?php
-		require_once 'backend/user_functions.php';
-
-		if (isset($_POST['userName']) AND isset($_POST['password']) AND isset($_POST['email'])) {
-			$result = add_user($_POST['userName'], $_POST['email'], $_POST['password']);
-			if ($result === TRUE) {
-				echo 'Welcome to Farhad\'s Blog. Thank you for registering';
-			}else{
-				echo 'Invalid entry';
-			}
-		}
-			?>
-		</div>
+	<div id="message-container"></div>
 		<form method="post" id="reg_form">
 			<label class="post-title" for="userName">Username:</label>
 			<p>Minimum of 6 characters and maximum of 20 Alphanumeric only</p>
@@ -136,52 +32,38 @@
 			</button>
 		</form>
 </div>
-
-
-<footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <ul class="list-inline text-center">
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted">Copyright &copy; Farhad's Blog 2014</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-  
-    
-
-  
-   
+<?php
+require_once 'footer_temp.php' 
+?>
 
 		<script>
 			$(function() {
+				$('#user_Name').blur(function() {
+					var data = {'userName' : $(this).val()}
+					var user_field = $(this);
+					$.post('ajax/unique_check.php', data,
+						function (response) {
+							if (response == 1) {
+								user_field.removeClass('alert-danger').addClass('alert-success');
+							}else {
+								user_field.removeClass('alert-success').addClass('alert-danger');
+							}
+						}
+					);
+				});
+				$('#e_mail').blur(function() {
+					var data = {'email': $(this).val()}
+					var email_field =$(this);
+					$.post('ajax/unique_check.php', data,
+						function (response) {
+							if (response == 1) {
+								email_field.removeClass('alert-danger').addClass('alert-success');
+							}else {
+								email_field.removeClass('alert-success').addClass('alert-danger');
+							}
+						}
+					);
+				});
 				// Handle the submit event by validating our fields first
 				$('#reg_form').submit(function() {
 					var nameValidate = /^[A-Za-z0-9]{6,20}$/;
@@ -212,12 +94,30 @@
 						alert('Email provided is not a valid email');
 						return false;
 					}
+					// AJAX call
+					var data = {
+						'userName' : username,
+						'password' : password,
+						'email' : email
+					}
+					$.post('/ajax/registration.php', data, 
+					function(response) {
+						if (response == 1){
+						var div = $('<div>')
+						.addClass ('alert alert-success')
+						.html ('Account registration successful');
+					}else {
+						var div = $('<div>')
+						.addClass('alert alert-danger')
+						.html(response);
+					}
+						$('#message-container').html(div);					
+					}
+					
+					);
+					return false;
 				});
 			});
 
 		</script>
-</body>
 
-</html>
-	</body>
-</html>
