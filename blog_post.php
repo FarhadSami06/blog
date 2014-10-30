@@ -10,13 +10,13 @@ $comments = get_post_comments($post['post_id']);
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/headers/<?php echo $posts['0']['picture']; ?>')">
+    <header class="intro-header" style="background-image: url('img/headers/<?php echo $post['picture']; ?>')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
-                        <h1>Post Title</h1>
-                        <span class="meta">Posted by <a href="#">Username</a> on timestamp</span>
+                        <h1><?php echo $post['title']; ?> </h1>
+                        <span class="meta">Posted by <a href="#"><?php echo $post['username'];?></a> on <?php echo date('F d, Y', $post ['created_ts']);?></span>
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@ $comments = get_post_comments($post['post_id']);
                 		?>
                 		<div class="post-container">
                 			<h2><?php echo $post['title'];?></h2>
-                			<h3><?php echo $post['body'];?></h3>
+                			<p><?php echo $post['body'];?></p>
                 			<hr>
                 		</div>
                 		
@@ -44,13 +44,15 @@ $comments = get_post_comments($post['post_id']);
 
     <hr>
     <div id="comment-container">
+    	<h1>Comments</h1>
     	<ul id="comments-list">
+    		
     		<?php
     		foreach($comments as $comment)
 			{
 				?>
 				<li><p><?php echo $comment['body'];?></p>
-				<em>By <?php echo $comment['username'];?> </em></li>
+				<em>By <?php echo $comment['username'];?> </em></li><hr>
 		<?php	} ?>
 			
     	</ul>

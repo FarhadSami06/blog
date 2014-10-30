@@ -1,14 +1,14 @@
 <?php
 $page_title = 'Blog | Registration';
 require_once 'header_temp.php'; ?>
-	<header class="intro-header" style="background-image: url('img/home-bg.jpg')">
+	<header class="intro-header" style="background-image: url('img/fruit2.jpg')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <h1>Farhad's Blog</h1>
+                        <h1>Health & Fitness</h1>
                         <hr class="small">
-                        <span class="subheading">Join the blog of THE SECOND MOST INTERESTING MAN IN THE WORLD</span>
+                        <span class="subheading">Sign Up</span>
                     </div>
                 </div>
             </div>

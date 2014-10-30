@@ -4,14 +4,14 @@ require_once 'proheader_temp.php';
 require_once 'backend/post_functions.php';
 $posts = get_post();
 ?>
-    <header class="intro-header" style="background-image: url('img/home-bg.jpg')">
+    <header class="intro-header" style="background-image: url('img/gym.jpg')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <h1>Home Page</h1>
+                        <h1>Health & Fitness</h1>
                         <hr class="small">
-                        <span class="subheading">Protected Home Page</span>
+                        <span class="subheading"></span>
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@ $posts = get_post();
         	<?php 
         	foreach($posts as $post)
 			{?>
-					<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+					<div id="blog-post" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 					<h2><a href="/blog_post.php?id=<?php echo $post['post_id'];?>"><?php echo $post['title'];?></a></h2>
 					<h3>By <?php echo $post['username'];?> on <?php echo date('F d, Y h:iA', $post ['created_ts']);?></h3>
 					<hr>
@@ -39,7 +39,7 @@ $posts = get_post();
 				
                 <!-- Pager -->
                 <ul class="pager">
-                    <li class="next">
+                    <li id="pager" class="next">
                         <a href="#">Older Posts &rarr;</a>
                     </li>
                 </ul>

@@ -98,8 +98,11 @@
 							
 			foreach($admin_nav as $nav) {
 				$liClass = '';
+				
 				if(strpos($_SERVER['REQUEST_URI'], '/admin/'.$nav['url'])  !== FALSE){
 					$liClass = 'active';
+					$br_nav = $nav;
+					
 				}
 				
 				
@@ -128,51 +131,33 @@
                     <div class="col-lg-12">
                         <h1 class="page-header"><?php echo $page_title; ?></h1>
                         <ol class="breadcrumb">
-                        	<?php 
-            $bc_navigation = array (
-							array(
-								'url' => 'index.php',
-								'class' => 'fa fa-fw fa-dashboard',
-								'name' => 'Dashboard'
-								),
-							array(
-								'url' => 'create_post.php',
-								'class' => 'fa fa-fw fa-pencil',
-								'name' => 'Create Post'
-								),
-							array(
-								'url' => 'list_post.php',
-								'class' => 'fa fa-fw fa-table',
-								'name' => 'List Posts'
-								),
-							array(
-								'url' => 'admin_user.php',
-								'class' => 'fa fa-fw fa-user',
-								'name' => 'Users'
-								)
-							);
-							
-			foreach($bc_navigation as $bc_nav) {
-				$li_class = '';
-				if(strpos($_SERVER['REQUEST_URI'], '/admin/'.$bc_nav['url'])  !== FALSE){
-					$li_class = 'active';
-				}
-				
-				
-				?>
-				<li class="<?php echo $li_class; ?>">
-                        <i class="<?php echo $bc_nav['class']; ?>"></i><?php echo $bc_nav['name']; ?>
-                    </li>
-				<?php
-			}			
-			
-
-							
-           ?> 
-                        	
-                            <li>
-                                <i class="fa fa-dashboard"></i> Dashboard
-                            </li>
+                                <li><i class="fa fa-fw fa-dashboard"></i>Dashboard</li>
+                             <?php 
+                             if($_SERVER['REQUEST_URI'] !== '/admin/index.php') { ?>
+                             	
+                              
+                                <li><i class="<?php echo $br_nav['class'];?>"></i> <?php echo $br_nav['name']; ?>
+                            </li> <?php } ?>
                         </ol>
                     </div>
                 </div>
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

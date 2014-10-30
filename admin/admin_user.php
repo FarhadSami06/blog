@@ -20,7 +20,7 @@ $users = get_user();
 			<td><?php echo $user['user_id']; ?></td>
 			<td><a href="users.php?id=<?php echo $user['user_id']; ?>"><?php echo $user['username']; ?></a></td>
 			<td><?php echo $user['email']; ?></td>
-			<td><span data-id="<?php echo $user['user_id']; ?>" class="glyphicon glyphicon-remove remove-user"></span> | Edit</td>
+			<td><span data-id="<?php echo $user['user_id']; ?>" class="glyphicon glyphicon-remove remove-user"></span></td>
 		</tr>
 	<?php } ?>
 
